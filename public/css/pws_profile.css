@@ -1,0 +1,64 @@
+
+.tab {
+    float: left;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+   
+    width: 30%;
+    height: 135px;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    display: block;
+    background-color: inherit;
+    color: black;
+    padding: 12px 16px;
+    width: 100%;
+    border: none;
+    outline: none;
+    color: #474747;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 15px;
+    background-color: #f0f0f5;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #7b84a2;
+    color: #fff;
+}
+
+/* Create an active/current "tab button" class */
+.tab button.active {
+    background-color: #7b84a2;
+    color: #fff;
+}
+
+/* Style the tab content */
+.tabcontent {
+    float: left;
+    padding: 0px 12px;
+    border: 1px solid #ccc;
+    width: 70%;
+    background-color: #fff;
+   
+    border-left: none;
+    height: 500px;
+}
+
+.progress-bar-success{
+	background-color: #20c718;
+}
+
+
+.pws-pending-sec i{
+	color: #fec468;
+}
+.pws-pending-sec h6{
+	font-size: 11px;
+	color: #908f8f;
+	padding-left: 10px;
+}

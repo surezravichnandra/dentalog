@@ -1,0 +1,40 @@
+
+
+    .text-success {
+        color: #10c469;
+    }
+    .text-info {
+        color: #62c9e8;
+    }
+    .text-warning {
+        color: #FFC107;
+    }
+    .text-danger {
+        color: #ff5b5b;
+    }
+
+
+    .fa-pencil{
+    	color: #FFC107 !important ;
+
+    }
+      .delete .fa-trash{
+    	color: #E34724;
+    	
+    }
+
+.view .fa-eye{
+color:#02e879;
+
+}
+
+
+
+    .btn-signin{
+  background-color: #fff !important;
+  border:  1px solid #36cca7 !important;
+}
+
+.btn-signin:hover{
+  color: #36cca7;
+}
