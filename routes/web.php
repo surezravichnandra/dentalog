@@ -23,12 +23,12 @@ Auth::routes();
 
     Route::get('logout', 'Auth\LoginController@logout');
 
-
     Route::get('admin',function(){ return redirect('admin/login');});
 
     Route::get('admin/login', 'Admin\Auth\LoginController@getAdminLogin');
 
     Route::post('admin/login', ['as'=>'admin.auth','uses'=>'Admin\Auth\LoginController@adminAuth']);
+    // Route::post('/password/email','Admin\Auth\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
 
          //admin password reset routes
     // Route::post('/password/email','Admin\Auth\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
