@@ -22,6 +22,7 @@ Auth::routes();
     Route::post('login', ['as'=>'user.auth','uses'=>'Auth\LoginController@userAuth']);
 
     Route::get('logout', 'Auth\LoginController@logout');
+    Route::get('out', 'Auth\LoginController@logout');
 
 
     Route::get('admin',function(){ return redirect('admin/login');});
