@@ -17,8 +17,6 @@ Route::get('/', function () {
 
 Auth::routes(); 
 
-
-
     Route::get('login', ['as'=>'user.auth','uses'=>'Auth\LoginController@getUserLogin']);
 
     Route::post('login', ['as'=>'user.auth','uses'=>'Auth\LoginController@userAuth']);
