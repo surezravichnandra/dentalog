@@ -14,7 +14,7 @@
         <div class="form-group" style="margin-top: 10px;">
           <div class="left-inner-addon pws-addon" >
            <i class="fa fa-list-alt" style="color:#858586" aria-hidden="true"></i>
-           <input type="text"  placeholder="Search doctors, speciality, etc."  class="pws-cat-field" id="catgroy" >
+           <input type="text"  placeholder="Search doctors, speciality, etc."  class="pws-cat-field" id="category" >
           </div>
         </div>
          <div class="form-group " style="margin-top: 10px;">
@@ -514,7 +514,7 @@
             <div class="modal-body">
               <div class="tab-content">
                 <div id="login-form" class="tab-pane fade in active">
-                  <form action="/">
+                  <form action="{{ route('user.auth') }}" method="POST">
 
                     <div class="form-group">
                       <label for="numberInput" class="pws-login-label">MobileNumber / Email ID</label>
@@ -673,13 +673,20 @@
   });
   </script>
   <script>
-  var catgroy = [
+  var category = [
   'Dentist', 'Dermatologist', 'Gynecologist/Obstetrician', 'Gynecologist/Obstetrician','Cardiologist','Psychiatrist','Gastroenterologist','Ear-Nose-Throat (ENT)','Neurologist','Urologist','Physiotherapist','Orthodontist'
   ];
 
-  $('#catgroy').autocomplete({
-  source:[catgroy]
+  $('#category').autocomplete({
+  source:[category]
   });
+
+$( "#category" ).autocomplete({
+    source : "{{URL::to('category/autocomplete')}}",
+    minLength: 3,
+    select: function(event, ui) {
+      $('#category').val(ui.item.value);
+    }
 
   const pickerCheckIn = datepicker('#datepicker');
 

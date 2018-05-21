@@ -23,7 +23,7 @@ Auth::routes();
 
     Route::post('login', ['as'=>'user.auth','uses'=>'Auth\LoginController@userAuth']);
 
-    Route::get('logout', 'Auth\LoginController@logout');
+    Route::match(['get','post'],'logout', 'Auth\LoginController@logout');
 
 
     Route::get('admin',function(){ return redirect('admin/login');});
@@ -31,8 +31,15 @@ Auth::routes();
     Route::get('admin/login', 'Admin\Auth\LoginController@getAdminLogin');
 
     Route::post('admin/login', ['as'=>'admin.auth','uses'=>'Admin\Auth\LoginController@adminAuth']);
+    
+    Route::match(['get','post'],'admin/logout', ['as'=>'admin.logout','uses'=>'Admin\Auth\LoginController@logout']);
 
-         //admin password reset routes
+
+
+    // Index page
+    Route::match(['get','post'],'category/autocomplete', 'AjaxController@categoryautocomplete']);
+
+    //admin password reset routes
     // Route::post('/password/email','Admin\Auth\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
     // Route::get('/password/reset','Admin\Auth\ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
     // Route::post('/password/reset','Admin\Auth\ResetPasswordController@reset');

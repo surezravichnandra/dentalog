@@ -72,7 +72,7 @@
             <button type="submit" class="btn btn-default">Submit</button>
           </form> -->
           <ul class="nav navbar-nav navbar-right">
-            <li> <button type="button" data-toggle="modal" data-target=".login-register-form" class="btn btn-default btn-signin">Sign In / Sign Up</button> </li>
+            <li> <button type="button" {{-- data-toggle="modal" data-target=".login-register-form" --}} class="btn btn-default btn-signin">Sign In / Sign Up</button> </li>
           </ul>
         </div>
       </div>

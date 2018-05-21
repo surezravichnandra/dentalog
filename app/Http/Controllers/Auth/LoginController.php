@@ -57,17 +57,17 @@ class LoginController extends Controller
 
     public function userAuth(Request $request)
     {
+        $field  = $this->setusername($request);
 
-      return  $validator  = $this->validateLogin($request);
+        $validator  = $this->validateLogin($request);
+
+        $validator  =$validator->setAttributeNames(['user'=>$field,'pass'=>'password']);
+
+        if ($validator->fails()){
+            
+        }
 
          
-
-        $field      = 'user';
-
-        if( is_numeric($request->input('user')))
-            $field  = 'mobile';
-        elseif (filter_var($request->input('user'), FILTER_VALIDATE_EMAIL)) 
-            $field  = 'email';
 
 
         $request->merge([$field => $request->input('user')]);
@@ -85,18 +85,30 @@ class LoginController extends Controller
     {
 
         if( is_numeric($request->user))
-            $rules = [ $this->username() => 'required|numeric', 'pass'   => 'required|string'];
 
+             $rules = [ 'user' => 'required|numeric', 'pass'   => 'required|string'];
         else 
-            $rules = [ $this->username() => 'required|between:3,64|email', 'pass'   => 'required|string' ];
 
-        return Validator::make($request->all(), $rules);
+             $rules = [ 'user' => 'required|between:3,64|email', 'pass'   => 'required|string' ];
+
+
+           return $validator= Validator::make($request->all(), $rules);
+
+            
 
     }
 
-    public function username()
+
+    public function setusername(Request $request)
     {
-        return 'user';
+        $field  = 'username';
+
+        if( is_numeric($request->input('user')))
+            $field  = 'mobile';
+        elseif (filter_var($request->input('user'), FILTER_VALIDATE_EMAIL)) 
+            $field  = 'email';
+
+        return $field;
     }
 
 
