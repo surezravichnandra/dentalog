@@ -15,9 +15,7 @@ Route::get('/', function () {
     return view('index');
 });
 
-Auth::routes();
-
-
+Auth::routes(); 
 
     Route::get('login', ['as'=>'user.auth','uses'=>'Auth\LoginController@getUserLogin']);
 
