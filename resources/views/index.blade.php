@@ -677,12 +677,12 @@
   'Dentist', 'Dermatologist', 'Gynecologist/Obstetrician', 'Gynecologist/Obstetrician','Cardiologist','Psychiatrist','Gastroenterologist','Ear-Nose-Throat (ENT)','Neurologist','Urologist','Physiotherapist','Orthodontist'
   ];
 
-  $('#category').autocomplete({
-  source:[category]
-  });
+  // $('#category').autocomplete({
+  // source:[category]
+  // });
 
 $( "#category" ).autocomplete({
-    source : "{{URL::to('category/autocomplete')}}",
+    source : category,
     minLength: 3,
     select: function(event, ui) {
       $('#category').val(ui.item.value);

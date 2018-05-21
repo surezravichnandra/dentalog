@@ -35,7 +35,7 @@ Auth::routes();
 
 
     // Index page
-    Route::match(['get','post'],'category/autocomplete', 'AjaxController@categoryautocomplete']);
+    Route::match(['get','post'],'category/autocomplete', 'AjaxController@categoryautocomplete');
 
     //admin password reset routes
     // Route::post('/password/email','Admin\Auth\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
