@@ -44,6 +44,27 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+
+        if($this->isHttpException($exception))
+        {
+            if ($request->ajax()) {
+                return response()->json(['error' => 'Not Found'], 404);
+            }
+            switch ($exception->getStatusCode()) {
+                // not found
+                case 404:
+                    return response()->view('404',[],404);
+                break;
+                // internal server error
+                case '500':
+                    return response()->view('500',[],500);    
+                break;
+                default:
+                    return $this->renderHttpException($exception);
+                break;
+            }
+        }
+
         return parent::render($request, $exception);
     }
 
@@ -59,7 +80,18 @@ class Handler extends ExceptionHandler
         if ($request->expectsJson()) {
             return response()->json(['error' => 'Unauthenticated.'], 401);
         }
+        $guard = array_get($exception->guards(),0);
 
+        //using switch statement to switch between the guards
+        switch ($guard) {
+            case 'admin':
+                $login = 'admin.login';
+                break;
+            default:
+                $login = 'login';
+                break;
+        }
+        return redirect()->guest(route($login));
         return redirect()->guest('login');
     }
 }

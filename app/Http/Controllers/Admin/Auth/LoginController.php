@@ -76,6 +76,7 @@ class LoginController extends Controller
 
     }
 
+<<<<<<< HEAD
     public function logout(Request $request)
     {
         $this->guard('admin')->logout();
@@ -84,5 +85,16 @@ class LoginController extends Controller
 
         return redirect('/');
     }
+=======
+
+public function logout(Request $request)
+{
+    $this->guard('admin')->logout();
+
+    $request->session()->invalidate();
+
+    return redirect('/');
+}
+>>>>>>> e9f6daf1b6de51a2c62c6be03d921c80ceb1e4a2
 
 }
