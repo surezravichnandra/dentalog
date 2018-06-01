@@ -66,6 +66,7 @@ class LoginController extends Controller
         if (Auth::guard('admin')->attempt(['email' => $request->input('email'), 'password' => $request->input('password')]))
         {
             $user = Auth::guard('admin')->user()->email;
+            Session(['random_id' => rand()]);
             return redirect()->route('admin.dashboard');
         }else{
             dd('your username and password are wrong.');            
@@ -73,6 +74,15 @@ class LoginController extends Controller
         //if unsuccessfull redirect back to the login for with form data
         // return redirect()->back()->withInput($request->only('email','remember'));
 
+    }
+
+    public function logout(Request $request)
+    {
+        $this->guard('admin')->logout();
+
+        $request->session()->invalidate();
+
+        return redirect('/');
     }
 
 }

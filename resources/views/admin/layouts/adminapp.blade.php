@@ -20,6 +20,8 @@
   <!-- Morris chart -->
   <link rel="stylesheet" href="{{ URL::asset('admins/plugins/morris/morris.css')}}">
   <!-- jvectormap -->
+   <!-- Morris chart -->
+  <link rel="stylesheet" href="{{ URL::asset('admins/dist/css/cutom-css.css')}}">
   <link rel="stylesheet" href="{{ URL::asset('admins/plugins/jvectormap/jquery-jvectormap-1.2.2.css')}}">
   <!-- Date Picker -->
   <link rel="stylesheet" href="{{ URL::asset('admins/plugins/datepicker/datepicker3.css')}}">
@@ -28,6 +30,7 @@
   <!-- fullCalendar 2.2.5-->
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{ URL::asset('admins/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
+    <link rel="stylesheet" href="{{ URL::asset('admins/plugins/datatables/dataTables.bootstrap4.min.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -35,17 +38,32 @@
 
 <body class="hold-transition sidebar-mini">
   <div class="wrapper">
-
-
       @section('body')
-
+    
       @show 
 
-      @include('admin.layouts.footer')
+    @include('admin.layouts.footer')
+    <div class="modal fade" id="confirmDelete" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Delete Parmanently</h4>
+            <span class="modal-id" id="modal-id"  style="display:none"></span>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure about this ?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-danger" id="confirm">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-
-     
   </div>
+
 <!-- jQuery -->
 <script src="{{ URL::asset('admins/plugins/jquery/jquery.min.js')}}"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -53,7 +71,23 @@
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button)
+    $('#confirmDelete').on('show.bs.modal', function (e) {
+    $message = $(e.relatedTarget).attr('data-message');
+    $(this).find('.modal-body p').text($message);
+    $title = $(e.relatedTarget).attr('data-title');
+    $(this).find('.modal-title').text($title);
+    $id = $(e.relatedTarget).attr('data-id');
+    $(this).find('.modal-id').text($id);
+    // Pass form reference to modal for submission on yes/ok
+    var form = $(e.relatedTarget).closest('form');
+    $(this).find('.modal-footer #confirm').data('form', form);
+  });
 </script>
+
+<!-- DataTables -->
+<script src="{{ URL::asset('admins/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{ URL::asset('admins/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
+
 <!-- Bootstrap 4 -->
 <script src="{{ URL::asset('admins/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- Morris.js charts -->

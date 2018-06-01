@@ -15,20 +15,25 @@ Route::get('/', function () {
     return view('index');
 });
 
-Auth::routes(); 
+Auth::routes();
+
+
 
     Route::get('login', ['as'=>'user.auth','uses'=>'Auth\LoginController@getUserLogin']);
 
     Route::post('login', ['as'=>'user.auth','uses'=>'Auth\LoginController@userAuth']);
 
-    Route::get('logout', 'Auth\LoginController@logout');
-    Route::get('out', 'Auth\LoginController@logout');
+    Route::match(['get','post'],'logout', 'Auth\LoginController@logout');
+
 
     Route::get('admin',function(){ return redirect('admin/login');});
 
     Route::get('admin/login', 'Admin\Auth\LoginController@getAdminLogin');
 
     Route::post('admin/login', ['as'=>'admin.auth','uses'=>'Admin\Auth\LoginController@adminAuth']);
+    
+    Route::match(['get','post'],'admin/logout', ['as'=>'admin.logout','uses'=>'Admin\Auth\LoginController@logout']);
+    // Route::match(['get','post'],'admin/logout', ['as'=>'admin.auth','uses'=>'Admin\Auth\LoginController@logout']);
     // Route::post('/password/email','Admin\Auth\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
 
          //admin password reset routes
@@ -42,7 +47,23 @@ Auth::routes();
 
         Route::get('admin/dashboard', ['as'=>'admin.dashboard','uses'=>'Admin\AdminController@index']);
 
+
+
              //admin password reset routes
         // Route::post('/password/reset','Auth\AdminResetPasswordController@reset');
         // Route::get('/password/reset/{token}','Auth\AdminResetPasswordController@showResetForm')->name('admin.password.reset');
+
+        ///Priya///
+      
+    Route::resource('admin/addStock', 'admin\StockController');    ///Add Stock////
+    Route::resource('admin/addServices', 'admin\ServiceController');   ///Add Services ////
+   
+    Route::resource('admin/medicineBill', 'admin\MedicineInvoiceController');  ///Medicines bill ////
+    Route::get('admin/pdfview/{id}','admin\MedicineInvoiceController@pdfview22'); ///Medicines bill  PDF ////
+    Route::get('admin/medicineBillView', 'admin\MedicineInvoiceController@viewBills');  ///Medicines View bill   ////
+    Route::get('admin/medicineInvoice/{id}', 'admin\MedicineInvoiceController@invoice'); ///Medicines   bill  Print ////
+    Route::resource('admin/treatmentBill', 'admin\TreatmentInvoiceController');             ///Treatment  bill ////
+    Route::get('admin/treatmentInvoice/{id}', 'admin\TreatmentInvoiceController@invoice');  ///Treatment   bill  Print ////
+    Route::get('admin/treatmentBillView', 'admin\TreatmentInvoiceController@viewBills');    ///Treatment    View bill////
+    Route::get('admin/treatmentpdfview/{id}','admin\TreatmentInvoiceController@treat_pdfview'); ///Treatment bill  PDF ////
     });

@@ -101,18 +101,11 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="service.html" class="nav-link">
+              <a href="{{ URL::to('admin/addServices') }}" class="nav-link">
                 <i class="fa fa-circle-o nav-icon"></i>
-                <p> Add Services</p>
+                <p> Add/View Services</p>
               </a>
             </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="fa fa-circle-o nav-icon"></i>
-                <p>List Service</p>
-              </a>
-            </li>
-
           </ul>
         </li>
         <li class="nav-item has-treeview ">
@@ -140,23 +133,23 @@
           <a href="#" class="nav-link">
             <i class="nav-icon fa fa-database"></i>
             <p>
-              Stocks
+              Medicines
               <i class="fa fa-angle-left right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{ URL::to('admin/addStock') }}" class="nav-link">
                 <i class="fa fa-circle-o nav-icon"></i>
-                <p> Add Stock</p>
+                <p> Add/View Medicine</p>
               </a>
             </li>
-            <li class="nav-item">
+         {{--    <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="fa fa-circle-o nav-icon"></i>
-                <p>List Stock</p>
+                <p>List Medicine</p>
               </a>
-            </li>
+            </li> --}}
 
           </ul>
         </li>
@@ -171,15 +164,27 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="treatmentinvoice.html" class="nav-link">
+              <a href="{{ URL::to('admin/treatmentBill') }}" class="nav-link">
                 <i class="fa fa-circle-o nav-icon"></i>
                 <p>Treatment Bill</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="farmacyinvoice.html" class="nav-link">
+              <a href="{{ URL::to('admin/treatmentBillView') }}" class="nav-link">
+                <i class="fa fa-circle-o nav-icon"></i>
+                <p> View Treatment Bill</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ URL::to('admin/medicineBill') }}" class="nav-link">
                 <i class="fa fa-circle-o nav-icon"></i>
                 <p>Farmacy Bill</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ URL::to('admin/medicineBillView') }}" class="nav-link">
+                <i class="fa fa-circle-o nav-icon"></i>
+                <p> View Farmacy Bill</p>
               </a>
             </li>
           </ul>

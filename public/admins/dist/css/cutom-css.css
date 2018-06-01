@@ -38,3 +38,35 @@ color:#02e879;
 .btn-signin:hover{
   color: #36cca7;
 }
+
+.light-success{
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+
+}
+
+.light-danger{
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+    
+}
+.light-warning{
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+    
+}
+.light-primary{
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+    
+}
+.light-info{
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+    
+}

@@ -18,6 +18,8 @@
   <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/datepicker.css')}}"/>
   <link rel="stylesheet" href="{{ URL::asset('font-awesome-4.7.0/css/font-awesome.min.css')}}">
   <script src="{{ URL::asset('assets/js/ie-emulation-modes-warning.js')}}"></script>
+      
+    
 </head>
 <body>
       

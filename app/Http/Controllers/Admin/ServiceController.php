@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Admin\Service;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+//use Laracasts\Flash\Flash;
+use App\Service;
 
 class ServiceController extends Controller
 {
@@ -14,8 +16,10 @@ class ServiceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+
     {
-        //
+        $service=Service::all();
+        return view('admin.master.services.service',compact('service'));
     }
 
     /**
@@ -36,7 +40,11 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $service=new Service;
+        $service->services=$request->service;
+        $service->cost=$request->cost;
+        $service->save();
+        return redirect('admin/addServices')->with('success','Successfully Created!');
     }
 
     /**
@@ -45,7 +53,7 @@ class ServiceController extends Controller
      * @param  \App\Admin\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function show(Service $service)
+    public function show($id)
     {
         //
     }
@@ -56,9 +64,12 @@ class ServiceController extends Controller
      * @param  \App\Admin\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function edit(Service $service)
+    public function edit($id)
     {
-        //
+        $id=decrypt($id);
+        $service=Service::all();
+        $editservice = Service::where('id', $id)->first();      
+        return view('admin.master.services.editservice',compact('editservice','service'));
     }
 
     /**
@@ -68,9 +79,13 @@ class ServiceController extends Controller
      * @param  \App\Admin\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Service $service)
+    public function update(Request $request, $id)
     {
-        //
+        $service = Service::find($id);
+        $service->services=$request->service;
+        $service->cost=$request->cost;
+        $service->save();
+        return redirect('admin/addServices')->with('success','Successfully Updated!');
     }
 
     /**
@@ -79,8 +94,10 @@ class ServiceController extends Controller
      * @param  \App\Admin\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Service $service)
+    public function destroy($id)
     {
-        //
+        $service = Service::find($id);       
+        $service->delete();
+        session(['success' => 'Successfully Deleted ..']);
     }
 }
